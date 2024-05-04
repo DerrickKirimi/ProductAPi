@@ -11,7 +11,12 @@ func main() {
 	//Handlefunc adds func to defaultServeMux
 	http.HandleFunc("/", func(rw http.ResponseWriter, r*http.Request) {
 		log.Println("Ssup G")
-		d, _ := io.ReadAll(r.Body)
+		d, err := io.ReadAll(r.Body)
+		if err != nil{
+			rw.WriteHeader(http.StatusBadRequest)
+			rw.Write([]byte("Ooops"))
+			return
+		}
 		fmt.Fprintf(rw, "Hello %s\n", d)
 	})
 
