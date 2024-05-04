@@ -13,9 +13,8 @@ func main() {
 		log.Println("Ssup G")
 		d, err := io.ReadAll(r.Body)
 		if err != nil{
-			rw.WriteHeader(http.StatusBadRequest)
-			rw.Write([]byte("Ooops"))
-			return
+			http.Error(rw, "Oops", http.StatusBadRequest)
+			return //Needed as Error does not end the request
 		}
 		fmt.Fprintf(rw, "Hello %s\n", d)
 	})
