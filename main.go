@@ -22,7 +22,7 @@ func main() {
 	sm.Handle("/goodbye", g)
 
 	s := &http.Server{
-		Addr:			":9090",
+		Addr:			":9091",
 		Handler:		sm,
 		IdleTimeout:	120 * time.Second,
 		ReadTimeout:	1 * time.Second,
